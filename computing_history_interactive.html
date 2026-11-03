@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An interactive journey through the evolution of computing, from early calculating tools to artificial intelligence.">
+<title>The Evolution of Computing | Interactive History</title>
+<style>
+:root{
+  --ink:#17243a;--muted:#63728a;--paper:#f5f7fb;--white:#fff;
+  --blue:#2357d8;--blue2:#4779f5;--teal:#0d8b83;--gold:#e5a32b;
+  --line:#e2e8f1;--shadow:0 16px 42px rgba(25,43,76,.09);
+  --radius:22px;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+button,a{font:inherit}
+a{color:inherit}
+button{cursor:pointer}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:#fff;padding:10px;z-index:99}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navwrap{max-width:1200px;margin:auto;padding:12px 22px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:850;letter-spacing:-.04em;white-space:nowrap}
+.brandmark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#6d8dff);display:grid;place-items:center;color:white;font-size:19px;box-shadow:0 7px 16px #2357d833}
+.navlinks{display:flex;align-items:center;gap:5px;margin-left:auto}
+.navlinks a{font-size:13px;font-weight:700;text-decoration:none;color:var(--muted);padding:9px 11px;border-radius:10px}
+.navlinks a:hover,.navlinks a.active{background:#edf2ff;color:var(--blue)}
+.nav-actions{display:flex;gap:8px}
+.smallbtn{border:1px solid var(--line);background:white;border-radius:11px;padding:8px 11px;font-size:13px;font-weight:750;color:var(--ink)}
+.smallbtn:hover{border-color:#a9bdf5;background:#f7f9ff}
+.menu-toggle{display:none}
+.hero{background:linear-gradient(115deg,#10264c 0%,#183f83 54%,#216d8b 100%);color:white;overflow:hidden;position:relative}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff20;border-radius:50%;width:480px;height:480px;right:-100px;top:-230px}
+.hero:after{width:340px;height:340px;right:80px;top:-150px}
+.hero-inner{max-width:1200px;margin:auto;padding:82px 22px 76px;display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center;position:relative;z-index:1}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:850;color:#b9d7ff}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-.055em;margin:17px 0 22px;max-width:720px}
+.hero p{font-size:18px;line-height:1.7;color:#d9e7ff;max-width:650px;margin:0 0 28px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px}
+.primary,.secondary{border:0;border-radius:13px;padding:13px 18px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.primary{background:#fff;color:#173b80}.primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px #071c4238}
+.secondary{background:#ffffff18;color:white;border:1px solid #ffffff45}
+.hero-art{min-height:310px;display:grid;place-items:center;position:relative}
+.orbit{width:min(340px,75vw);aspect-ratio:1;border:1px solid #ffffff55;border-radius:50%;display:grid;place-items:center;position:relative;animation:float 7s ease-in-out infinite}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px dashed #ffffff65;border-radius:50%;inset:28px}
+.orbit:after{inset:65px;border-style:solid}
+.chip{width:118px;height:118px;border-radius:28px;background:linear-gradient(145deg,#fff,#d9e9ff);display:grid;place-items:center;color:#204d9e;font-size:48px;box-shadow:0 22px 55px #071d4266;transform:rotate(-8deg)}
+.float-icon{position:absolute;width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:#ffffffeb;color:#1c4b9b;font-size:25px;box-shadow:0 12px 30px #071d423d}
+.i1{top:18px;left:36px}.i2{right:3px;top:95px}.i3{bottom:17px;left:43px}.i4{bottom:36px;right:35px}
+main{max-width:1200px;margin:auto;padding:0 22px 70px}
+.section{padding:76px 0 8px;scroll-margin-top:82px}
+.section-head{max-width:760px;margin-bottom:28px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:850;color:var(--blue)}
+h2{font-size:clamp(30px,4vw,43px);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}
+.lead{font-size:17px;color:var(--muted);margin:0}
+.grid{display:grid;gap:18px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.card{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:23px;box-shadow:var(--shadow)}
+.card h3{margin:8px 0 7px;font-size:19px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--muted)}
+.iconbox{width:46px;height:46px;border-radius:14px;background:#edf2ff;color:var(--blue);display:grid;place-items:center;font-size:23px}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.stat{border:1px solid #ffffff30;background:#ffffff12;border-radius:16px;padding:15px}
+.stat strong{display:block;font-size:25px;line-height:1.2}.stat span{font-size:12px;color:#d1e1ff}
+.callout{margin-top:20px;background:#edf5ff;border:1px solid #d8e7ff;padding:18px 20px;border-radius:16px;color:#315078}
+.timeline{position:relative;margin:34px 0 0;padding-left:28px}
+.timeline:before{content:"";position:absolute;left:8px;top:7px;bottom:12px;width:2px;background:linear-gradient(var(--blue),#74c9c1)}
+.event{position:relative;padding:0 0 27px 22px}
+.event:before{content:"";position:absolute;left:-26px;top:6px;width:12px;height:12px;background:white;border:4px solid var(--blue);border-radius:50%;box-shadow:0 0 0 4px #e8efff}
+.event time{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.06em}
+.event h3{margin:3px 0 4px;font-size:18px}.event p{margin:0;color:var(--muted)}
+.timeline-controls{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.filter{border:1px solid var(--line);background:white;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:800;color:var(--muted)}
+.filter[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:white}
+.generation-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+.gentab{border:1px solid var(--line);background:white;color:var(--muted);padding:10px 14px;border-radius:12px;font-weight:800}
+.gentab[aria-selected="true"]{background:#eaf0ff;border-color:#b8c9ff;color:var(--blue)}
+.gen-panel{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
+.gen-visual{min-height:280px;border-radius:22px;background:linear-gradient(145deg,#eaf1ff,#e5f7f4);display:grid;place-items:center;position:relative;overflow:hidden}
+.machine{width:210px;height:150px;border:8px solid #345a9b;border-radius:18px;background:#b9d4ff;position:relative;box-shadow:12px 15px 0 #23487c30;animation:bob 3s ease-in-out infinite}
+.machine:before{content:"";position:absolute;left:18px;right:18px;top:16px;height:74px;border-radius:8px;background:#183c75}
+.machine:after{content:"";position:absolute;width:58px;height:10px;border-radius:10px;background:#345a9b;bottom:-26px;left:68px;box-shadow:0 8px 0 #345a9b}
+.machine .screen{position:absolute;inset:25px 28px auto;height:53px;border:2px solid #8bb7ff;border-radius:4px;color:#8de4d7;text-align:center;font-size:27px;line-height:48px}
+.machine .knob{position:absolute;width:12px;height:12px;background:#e5a32b;border-radius:50%;right:12px;bottom:12px}
+.gen-visual[data-gen="1"] .machine{width:220px;height:135px;border-radius:5px;background:#c8b99d;border-color:#7a6750}
+.gen-visual[data-gen="1"] .machine:before{background:#65584a}
+.gen-visual[data-gen="2"] .machine{height:115px;width:190px;background:#a7d4d3;border-color:#387c83}
+.gen-visual[data-gen="2"] .machine:before{background:#205a69}
+.gen-visual[data-gen="3"] .machine{width:165px;height:120px;border-color:#4b6b9f}
+.gen-visual[data-gen="3"] .machine:before{background:#203f77}
+.gen-visual[data-gen="4"] .machine{width:135px;height:105px;border-width:5px;border-color:#3b70c9}
+.gen-visual[data-gen="4"] .machine:before{background:#173b78}
+.gen-visual[data-gen="5"] .machine{width:150px;height:100px;border-radius:28px;border-color:#0d8b83;background:#b8f0e5}
+.gen-visual[data-gen="5"] .machine:before{background:#116d70;border-radius:18px}
+.gen-copy h3{font-size:25px;margin:0 0 8px}.gen-copy p{color:var(--muted)}
+.gen-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}
+.fact{padding:12px;background:#f5f7fb;border-radius:12px}.fact b{display:block;font-size:12px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}.fact span{font-size:14px}
+details{background:white;border:1px solid var(--line);border-radius:15px;padding:16px 18px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:850;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary:after{content:"＋";color:var(--blue);font-size:20px;line-height:1}
+details[open] summary:after{content:"−"}
+details p{color:var(--muted);margin:12px 0 0}
+.person-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.person{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}
+.person .initial{width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:#eaf0ff;color:var(--blue);font-weight:900}
+.person h3{margin:10px 0 2px;font-size:17px}.person .date{font-size:12px;color:var(--teal);font-weight:850}.person p{font-size:14px;color:var(--muted);margin:8px 0 0}
+.language-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.lang{background:white;border:1px solid var(--line);border-radius:16px;padding:18px}
+.lang-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.lang h3{margin:0}.tag{font-size:11px;background:#edf2ff;color:var(--blue);padding:5px 8px;border-radius:99px;font-weight:850}
+pre{background:#14233c;color:#e3efff;padding:14px;border-radius:12px;overflow:auto;font-size:13px;line-height:1.5;margin:12px 0 0}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ai-card{border-radius:20px;padding:24px;background:white;border:1px solid var(--line)}
+.ai-card.good{border-top:4px solid var(--teal)}.ai-card.caution{border-top:4px solid var(--gold)}
+.ai-card ul{padding-left:20px;color:var(--muted);margin-bottom:0}
+.quiz{background:#132b54;color:white;border-radius:24px;padding:28px}
+.quiz p{color:#d4e2ff}.quiz-question{font-size:20px;font-weight:850;margin:18px 0}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer{background:#ffffff12;color:white;border:1px solid #ffffff35;border-radius:12px;padding:12px;text-align:left;font-weight:700}
+.answer:hover{background:#ffffff24}.answer.correct{background:#0d8b8350;border-color:#4ed3bd}.answer.wrong{background:#b64b4b55;border-color:#ff9c9c}
+.feedback{min-height:28px;margin-top:12px;font-weight:750}
+.quiz-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+footer{background:#10264c;color:#d8e6ff;padding:35px 22px;margin-top:70px}
+.footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{margin:4px 0;color:#a9c1e7;font-size:13px}
+.backtop{color:white;text-decoration:none;font-weight:800}
+@keyframes float{50%{transform:translateY(-9px) rotate(2deg)}}@keyframes bob{50%{transform:translateY(-7px)}}
+@media(max-width:900px){.navlinks{display:none;position:absolute;top:62px;left:12px;right:12px;background:white;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.navlinks.open{display:flex}.navlinks a{padding:12px}.menu-toggle{display:inline-flex}.hero-inner{grid-template-columns:1fr;padding-top:60px}.hero-art{min-height:260px}.grid-3{grid-template-columns:1fr 1fr}.person-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.navwrap{padding:10px 14px}.nav-actions .sound-label{display:none}.hero-inner{padding:48px 18px}.hero p{font-size:16px}.hero-art{min-height:230px}.orbit{width:235px}.chip{width:90px;height:90px;font-size:38px}.float-icon{width:43px;height:43px}.statrow{grid-template-columns:1fr 1fr}.grid-3,.person-grid,.language-list,.ai-grid,.gen-panel{grid-template-columns:1fr}.section{padding-top:57px}.answers{grid-template-columns:1fr}.gen-visual{min-height:230px}main{padding:0 16px 50px}.quiz{padding:20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+ <div class="navwrap">
+  <a class="brand" href="#home"><span class="brandmark">⌘</span><span>COMPUTING THROUGH TIME</span></a>
+  <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+   <a href="#overview">Overview</a><a href="#timeline">Timeline</a><a href="#generations">Generations</a><a href="#pioneers">Pioneers</a><a href="#languages">Code</a><a href="#ai">AI</a><a href="#quiz">Quiz</a>
+  </nav>
+  <div class="nav-actions">
+   <button class="smallbtn" id="soundBtn" type="button" aria-pressed="false">♫ <span class="sound-label">Sound off</span></button>
+   <button class="smallbtn menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="navlinks">☰ Menu</button>
+  </div>
+ </div>
+</header>
+<section class="hero" id="home">
+ <div class="hero-inner">
+  <div>
+   <div class="eyebrow">A journey across centuries of invention</div>
+   <h1>From counting stones to thinking machines.</h1>
+   <p>Explore how people transformed simple calculating tools into powerful computers—and how each breakthrough changed the way we live, work, communicate, and understand the world.</p>
+   <div class="hero-buttons"><a class="primary" href="#timeline">Explore the timeline <span>→</span></a><a class="secondary" href="#generations">Meet the five generations</a></div>
+   <div class="statrow">
+    <div class="stat"><strong>5</strong><span>computer generations</span></div>
+    <div class="stat"><strong>2,000+</strong><span>years of calculating tools</span></div>
+    <div class="stat"><strong>1940s</strong><span>electronic-computer era</span></div>
+    <div class="stat"><strong>Today</strong><span>AI-powered computing</span></div>
+   </div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="orbit"><div class="chip">⌘</div><div class="float-icon i1">🧮</div><div class="float-icon i2">⚙️</div><div class="float-icon i3">💾</div><div class="float-icon i4">✦</div></div></div>
+ </div>
+</section>
+<main id="main">
+<section class="section" id="overview">
+ <div class="section-head"><div class="kicker">01 / The big picture</div><h2>What is the history of computing?</h2><p class="lead">Computing history is the story of humans finding better ways to represent information, perform calculations, follow instructions, and solve problems.</p></div>
+ <div class="grid grid-3">
+  <article class="card"><div class="iconbox">🧮</div><h3>Calculate</h3><p>Early tools helped people count, measure, keep records, and solve arithmetic problems more reliably.</p></article>
+  <article class="card"><div class="iconbox">⚙️</div><h3>Automate</h3><p>Mechanical and electronic machines began carrying out instructions faster than people could do by hand.</p></article>
+  <article class="card"><div class="iconbox">✦</div><h3>Connect and learn</h3><p>Modern computers share information, recognize patterns, and help people explore complex questions.</p></article>
+ </div>
+ <div class="callout"><strong>One important idea:</strong> A computer is not just a screen. It is a system that takes input, processes information according to instructions, and produces output. Many computers also store information for later use.</div>
+</section>
+<section class="section" id="timeline">
+ <div class="section-head"><div class="kicker">02 / Milestones</div><h2>An interactive timeline</h2><p class="lead">Move from ancient counting tools to modern artificial intelligence. Select a time period to narrow the timeline.</p></div>
+ <div class="timeline-controls" role="group" aria-label="Filter timeline">
+  <button class="filter" data-filter="all" aria-pressed="true">All milestones</button><button class="filter" data-filter="early" aria-pressed="false">Early tools</button><button class="filter" data-filter="mechanical" aria-pressed="false">Mechanical age</button><button class="filter" data-filter="electronic" aria-pressed="false">Electronic age</button><button class="filter" data-filter="modern" aria-pressed="false">Modern era</button>
+ </div>
+ <div class="timeline" id="timelineList">
+  <article class="event" data-era="early"><time>ANCIENT WORLD · c. 2400 BCE onward</time><h3>Counting boards and the abacus</h3><p>People use beads, counters, and place-value methods to make arithmetic easier. The abacus develops in several forms across different regions.</p></article>
+  <article class="event" data-era="mechanical"><time>1642</time><h3>Blaise Pascal builds the Pascaline</h3><p>Pascal designs a mechanical calculator that uses wheels and gears to add and subtract numbers.</p></article>
+  <article class="event" data-era="mechanical"><time>1670s</time><h3>Leibniz improves mechanical calculation</h3><p>Gottfried Wilhelm Leibniz develops a stepped-drum calculator design intended to perform multiplication and division as well as addition and subtraction.</p></article>
+  <article class="event" data-era="mechanical"><time>1801</time><h3>Jacquard loom uses punched cards</h3><p>Punched cards control weaving patterns. The idea of instructions represented by holes in cards later influences computing.</p></article>
+  <article class="event" data-era="mechanical"><time>1830s</time><h3>Charles Babbage designs the Analytical Engine</h3><p>Babbage imagines a programmable mechanical machine with parts for calculation, memory, and control. It is not completed in his lifetime.</p></article>
+  <article class="event" data-era="mechanical"><time>1840s</time><h3>Ada Lovelace writes an algorithm</h3><p>Lovelace publishes notes describing how the Analytical Engine could follow a sequence of operations. She is often recognized as an early computer programmer.</p></article>
+  <article class="event" data-era="mechanical"><time>1890</time><h3>Hollerith tabulating system</h3><p>Herman Hollerith's punched-card machines help process data for the 1890 U.S. census, speeding up large-scale tabulation.</p></article>
+  <article class="event" data-era="electronic"><time>1930s–1940s</time><h3>Electronic computing takes shape</h3><p>Researchers develop electromechanical and electronic machines for scientific, military, and administrative calculations.</p></article>
+  <article class="event" data-era="electronic"><time>1940s</time><h3>Vacuum-tube computers</h3><p>Early electronic computers use vacuum tubes to switch and amplify electrical signals. They are large, hot, and power-hungry.</p></article>
+  <article class="event" data-era="electronic"><time>1947</time><h3>The transistor is demonstrated</h3><p>The transistor offers a smaller, more reliable alternative to vacuum tubes and becomes a foundation of later electronics.</p></article>
+  <article class="event" data-era="electronic"><time>1950s–1960s</time><h3>Transistors and integrated circuits</h3><p>Computers become more compact and dependable as transistors and then integrated circuits replace many separate components.</p></article>
+  <article class="event" data-era="modern"><time>1970s</time><h3>Microprocessors and personal computing</h3><p>Putting a computer's central processing functions on a chip helps make smaller, more affordable computers possible.</p></article>
+  <article class="event" data-era="modern"><time>1980s–1990s</time><h3>Personal computers and the internet expand</h3><p>Computers become common in homes, schools, and offices, while networked communication grows rapidly.</p></article>
+  <article class="event" data-era="modern"><time>2000s–2010s</time><h3>Mobile and cloud computing</h3><p>Smartphones, wireless networks, and cloud services make computing portable and connected.</p></article>
+  <article class="event" data-era="modern"><time>2020s–today</time><h3>AI becomes part of everyday computing</h3><p>Machine-learning systems support translation, image recognition, recommendations, scientific research, and generative tools.</p></article>
+ </div>
+</section>
+<section class="section" id="generations">
+ <div class="section-head"><div class="kicker">03 / Five generations</div><h2>How computers changed, generation by generation</h2><p class="lead">The generations are a useful way to organize major changes in computer hardware. The dates are approximate because technologies overlapped.</p></div>
+ <div class="generation-tabs" role="tablist" aria-label="Computer generations">
+  <button class="gentab" role="tab" aria-selected="true" data-gen="1">1 · Vacuum tubes</button><button class="gentab" role="tab" aria-selected="false" data-gen="2">2 · Transistors</button><button class="gentab" role="tab" aria-selected="false" data-gen="3">3 · Integrated circuits</button><button class="gentab" role="tab" aria-selected="false" data-gen="4">4 · Microprocessors</button><button class="gentab" role="tab" aria-selected="false" data-gen="5">5 · AI & beyond</button>
+ </div>
+ <div class="card gen-panel">
+  <div class="gen-visual" id="genVisual" data-gen="1" aria-hidden="true"><div class="machine"><div class="screen">1010</div><div class="knob"></div></div></div>
+  <div class="gen-copy" id="genCopy" aria-live="polite">
+   <div class="kicker">FIRST GENERATION · c. 1940s–1950s</div><h3>Vacuum-tube computers</h3><p>These early electronic computers used vacuum tubes to process electrical signals. They could perform calculations much faster than manual methods, but often occupied entire rooms and required substantial electricity and cooling.</p>
+   <div class="gen-facts"><div class="fact"><b>Main technology</b><span>Vacuum tubes</span></div><div class="fact"><b>Size</b><span>Room-sized systems</span></div><div class="fact"><b>Programming</b><span>Machine language, wiring, and punched cards</span></div><div class="fact"><b>Challenge</b><span>Heat, cost, and reliability</span></div></div>
+  </div>
+ </div>
+ <div class="callout" id="genNote">Remember: each generation did not instantly replace the previous one. Different kinds of computers continued to use different technologies.</div>
+</section>
+<section class="section" id="pioneers">
+ <div class="section-head"><div class="kicker">04 / People behind the progress</div><h2>Meet the pioneers</h2><p class="lead">Open each profile to learn how a person's ideas or inventions helped shape computing.</p></div>
+ <div class="person-grid">
+  <article class="person"><div class="initial">BP</div><h3>Blaise Pascal</h3><div class="date">1623–1662</div><p>Designed the Pascaline, a mechanical calculator that could add and subtract.</p></article>
+  <article class="person"><div class="initial">GB</div><h3>Charles Babbage</h3><div class="date">1791–1871</div><p>Designed the Difference Engine and the more general Analytical Engine.</p></article>
+  <article class="person"><div class="initial">AL</div><h3>Ada Lovelace</h3><div class="date">1815–1852</div><p>Explained how the Analytical Engine could follow an algorithm to manipulate symbols.</p></article>
+  <article class="person"><div class="initial">HH</div><h3>Herman Hollerith</h3><div class="date">1860–1929</div><p>Developed punched-card tabulating technology used for large-scale data processing.</p></article>
+  <article class="person"><div class="initial">AT</div><h3>Alan Turing</h3><div class="date">1912–1954</div><p>Made foundational contributions to the theory of computation and wartime codebreaking.</p></article>
+  <article class="person"><div class="initial">GH</div><h3>Grace Hopper</h3><div class="date">1906–1992</div><p>Helped develop early compiler technology and influenced business programming languages.</p></article>
+  <article class="person"><div class="initial">TR</div><h3>Transistor researchers</h3><div class="date">1947 breakthrough</div><p>John Bardeen, Walter Brattain, and William Shockley contributed to the invention of the transistor at Bell Labs.</p></article>
+  <article class="person"><div class="initial">DK</div><h3>Donald Knuth</h3><div class="date">Born 1938</div><p>His work on algorithms and computer programming helped shape computer science as a discipline.</p></article>
+  <article class="person"><div class="initial">ML</div><h3>Modern AI researchers</h3><div class="date">20th century–today</div><p>Many research teams have advanced machine learning, neural networks, language technology, and robotics.</p></article>
+ </div>
+ <div class="callout">Historical note: computing was built by many people working across mathematics, engineering, science, and industry. No single inventor created the modern computer alone.</div>
+</section>
+<section class="section" id="languages">
+ <div class="section-head"><div class="kicker">05 / Instructions for computers</div><h2>Programming languages: from bits to readable code</h2><p class="lead">Hardware performs operations, but software gives it instructions. Programming languages help people express those instructions.</p></div>
+ <div class="language-list">
+  <article class="lang"><div class="lang-head"><h3>Machine language</h3><span class="tag">Low-level</span></div><p>Instructions represented as binary patterns that a processor can execute directly.</p><pre>01001000 01101001</pre></article>
+  <article class="lang"><div class="lang-head"><h3>Assembly language</h3><span class="tag">Low-level</span></div><p>Uses short symbolic instructions that correspond closely to processor operations.</p><pre>LOAD R1, 5
+ADD  R1, 3</pre></article>
+  <article class="lang"><div class="lang-head"><h3>FORTRAN</h3><span class="tag">1950s</span></div><p>Created for scientific and engineering calculations; its name comes from “Formula Translation.”</p><pre>PRINT *, "HELLO, WORLD!"</pre></article>
+  <article class="lang"><div class="lang-head"><h3>COBOL</h3><span class="tag">1950s</span></div><p>Designed for business data processing, with a style intended to be more English-like.</p><pre>DISPLAY "HELLO, WORLD".</pre></article>
+  <article class="lang"><div class="lang-head"><h3>C</h3><span class="tag">1970s</span></div><p>A powerful general-purpose language widely used for operating systems and software.</p><pre>#include &lt;stdio.h&gt;
+int main(void) {
+  printf("Hello, world!");
+  return 0;
+}</pre></article>
+  <article class="lang"><div class="lang-head"><h3>Python</h3><span class="tag">1990s</span></div><p>A readable, general-purpose language used in education, automation, data science, and AI.</p><pre>print("Hello, world!")</pre></article>
+ </div>
+</section>
+<section class="section" id="ai">
+ <div class="section-head"><div class="kicker">06 / Computing today</div><h2>Artificial intelligence: new possibilities, real responsibilities</h2><p class="lead">AI systems can identify patterns in data and generate predictions or content. They can be useful, but their results need human judgment.</p></div>
+ <div class="grid grid-3">
+  <article class="card"><div class="iconbox">🧠</div><h3>Machine learning</h3><p>Computer systems learn patterns from examples rather than relying only on rules written one by one.</p></article>
+  <article class="card"><div class="iconbox">💬</div><h3>Language tools</h3><p>AI can help translate, summarize, answer questions, and generate text—but it can also make mistakes.</p></article>
+  <article class="card"><div class="iconbox">🔬</div><h3>Research and discovery</h3><p>Computing helps researchers analyze large datasets, model complex systems, and test ideas.</p></article>
+ </div>
+ <div class="ai-grid" style="margin-top:18px">
+  <article class="ai-card good"><h3>Potential benefits</h3><ul><li>Can assist with repetitive or time-consuming tasks.</li><li>Can help people analyze large amounts of information.</li><li>Can improve accessibility through tools such as speech recognition and translation.</li><li>Can support scientific research and creative exploration.</li></ul></article>
+  <article class="ai-card caution"><h3>Risks and questions</h3><ul><li>AI can produce incorrect or misleading information.</li><li>Biased training data can lead to unfair outcomes.</li><li>Personal data and privacy need protection.</li><li>People must consider how automation affects jobs and society.</li></ul></article>
+ </div>
+ <div class="callout"><strong>Think critically:</strong> AI output should be checked, especially when accuracy, safety, fairness, or important decisions are involved. Human oversight remains important.</div>
+</section>
+<section class="section" id="quiz">
+ <div class="section-head"><div class="kicker">07 / Check your understanding</div><h2>Quick knowledge challenge</h2><p class="lead">Answer the questions to test what you learned. You can retry any question.</p></div>
+ <div class="quiz">
+  <div class="eyebrow">Interactive quiz · <span id="qCount">Question 1 of 5</span></div>
+  <div class="quiz-question" id="question">Which technology defined the first generation of electronic computers?</div>
+  <div class="answers" id="answers">
+   <button class="answer">Transistors</button><button class="answer">Vacuum tubes</button><button class="answer">Microprocessors</button><button class="answer">Integrated circuits</button>
+  </div>
+  <div class="feedback" id="feedback" aria-live="polite"></div>
+  <div class="quiz-bottom"><span id="score">Score: 0 / 0</span><button class="primary" id="nextBtn" type="button" style="display:none">Next question →</button></div>
+ </div>
+</section>
+</main>
+<footer><div class="footer-inner"><div><strong>COMPUTING THROUGH TIME</strong><p>An interactive introduction to the evolution of computing.</p><p>Educational overview · Dates are approximate where technologies overlapped.</p></div><a class="backtop" href="#home">Back to top ↑</a></div></footer>
+<script>
+(() => {
+ const $ = (s,root=document) => root.querySelector(s);
+ const $$ = (s,root=document) => [...root.querySelectorAll(s)];
+ // Navigation menu and smooth section navigation
+ const menuBtn=$("#menuBtn"), nav=$("#navlinks");
+ menuBtn.addEventListener("click",()=>{const open=nav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(open));});
+ $$("#navlinks a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");menuBtn.setAttribute("aria-expanded","false");}));
+ const sections=$$("main .section");
+ const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){$$(".navlinks a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id));}}),{rootMargin:"-25% 0px -65% 0px"});
+ sections.forEach(s=>observer.observe(s));
+ // Timeline filters
+ $$(".filter").forEach(btn=>btn.addEventListener("click",()=>{
+  const filter=btn.dataset.filter;
+  $$(".filter").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));
+  $$("#timelineList .event").forEach(event=>event.hidden=filter!=="all"&&event.dataset.era!==filter);
+ }));
+ // Generation explorer
+ const generations={
+  1:{label:"FIRST GENERATION · c. 1940s–1950s",title:"Vacuum-tube computers",body:"These early electronic computers used vacuum tubes to process electrical signals. They could perform calculations much faster than manual methods, but often occupied entire rooms and required substantial electricity and cooling.",facts:["Vacuum tubes","Room-sized systems","Machine language, wiring, and punched cards","Heat, cost, and reliability"]},
+  2:{label:"SECOND GENERATION · c. 1950s–1960s",title:"Transistor computers",body:"Transistors replaced many vacuum tubes. Computers became smaller, more reliable, faster, and more energy-efficient. Assembly language and early high-level languages became more common.",facts:["Transistors","Smaller than first-generation systems","Assembly, FORTRAN, and COBOL","Still expensive and often institution-sized"]},
+  3:{label:"THIRD GENERATION · c. 1960s–1970s",title:"Integrated-circuit computers",body:"Integrated circuits placed many electronic components onto small chips. This increased reliability and processing capability while reducing size and cost.",facts:["Integrated circuits","Mainframes and minicomputers","Operating systems and high-level languages","More complex hardware and software"]},
+  4:{label:"FOURTH GENERATION · 1970s–today",title:"Microprocessor computers",body:"The microprocessor placed a computer's central processing functions on a chip. This helped make personal computers, laptops, smartphones, and many embedded systems possible.",facts:["Microprocessors","Personal and mobile devices","Graphical interfaces and many languages","Security, privacy, and rapid change"]},
+  5:{label:"FIFTH GENERATION · ongoing",title:"AI-focused and emerging computers",body:"This label is often used for systems emphasizing artificial intelligence, parallel processing, and advanced computing. There is no single universally agreed boundary for this generation.",facts:["AI accelerators and advanced chips","Devices, data centers, and specialized systems","Machine learning and natural-language tools","Accuracy, fairness, energy, and oversight"]}
+ };
+ function showGen(n){
+  const g=generations[n],copy=$("#genCopy");
+  $("#genVisual").dataset.gen=n;
+  copy.innerHTML=`<div class="kicker">${g.label}</div><h3>${g.title}</h3><p>${g.body}</p><div class="gen-facts">${["Main technology","Typical systems","Programming","Key challenge"].map((label,i)=>`<div class="fact"><b>${label}</b><span>${g.facts[i]}</span></div>`).join("")}</div>`;
+  $$(".gentab").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.gen===String(n))));
+ }
+ $$(".gentab").forEach(btn=>btn.addEventListener("click",()=>showGen(btn.dataset.gen)));
+ // Optional synthesized sound effects. Sound starts only after a user presses the control.
+ let audioCtx=null,soundOn=false;
+ function beep(freq=520,duration=.07){
+  if(!soundOn)return;
+  try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type="sine";osc.frequency.value=freq;gain.gain.setValueAtTime(.045,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+duration);}catch(e){}
+ }
+ const soundBtn=$("#soundBtn");
+ soundBtn.addEventListener("click",()=>{soundOn=!soundOn;soundBtn.setAttribute("aria-pressed",String(soundOn));soundBtn.innerHTML=`♫ <span class="sound-label">Sound ${soundOn?"on":"off"}</span>`;if(soundOn)beep(660,.12);});
+ document.addEventListener("click",e=>{if(e.target.closest("button")&&e.target!==soundBtn)beep(440,.045);});
+ // Quiz
+ const questions=[
+  {q:"Which technology defined the first generation of electronic computers?",a:["Transistors","Vacuum tubes","Microprocessors","Integrated circuits"],correct:1,why:"First-generation electronic computers used vacuum tubes as their main switching technology."},
+  {q:"Who is widely recognized for publishing an early algorithm intended for a general-purpose computing machine?",a:["Ada Lovelace","Blaise Pascal","Herman Hollerith","Grace Hopper"],correct:0,why:"Ada Lovelace's notes described a sequence of operations for Charles Babbage's Analytical Engine."},
+  {q:"What was a major advantage of the transistor over the vacuum tube?",a:["It needed punched cards","It was larger","It was smaller and more reliable","It eliminated software"],correct:2,why:"Transistors were smaller, used less power, and were generally more reliable than vacuum tubes."},
+  {q:"What helped make personal computers more practical and affordable?",a:["The abacus","The microprocessor","The Jacquard loom","The Pascaline"],correct:1,why:"The microprocessor placed central processing functions on a chip, helping computers become much smaller."},
+  {q:"What is a responsible way to use AI-generated information?",a:["Assume it is always correct","Never question its sources","Check important claims and use human judgment","Share private data freely"],correct:2,why:"AI can make mistakes, so important claims should be checked and privacy should be protected."}
+ ];
+ let qi=0,score=0,answered=false;
+ function renderQuestion(){
+  const q=questions[qi];$("#qCount").textContent=`Question ${qi+1} of ${questions.length}`;$("#question").textContent=q.q;$("#feedback").textContent="";$("#nextBtn").style.display="none";$("#score").textContent=`Score: ${score} / ${qi}`;
+  const answers=$("#answers");answers.innerHTML="";
+  q.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=answer;b.addEventListener("click",()=>choose(i,b));answers.appendChild(b);});
+  answered=false;
+ }
+ function choose(index,button){
+  if(answered)return;answered=true;const q=questions[qi],buttons=$$(".answer");
+  buttons.forEach((b,i)=>{b.disabled=true;if(i===q.correct)b.classList.add("correct");});
+  if(index===q.correct){score++;$("#feedback").textContent="Correct! "+q.why;}else{button.classList.add("wrong");$("#feedback").textContent="Not quite. "+q.why;}
+  $("#score").textContent=`Score: ${score} / ${qi+1}`;$("#nextBtn").textContent=qi===questions.length-1?"See your result →":"Next question →";$("#nextBtn").style.display="inline-flex";
+ }
+ $("#nextBtn").addEventListener("click",()=>{if(qi<questions.length-1){qi++;renderQuestion();}else{$("#question").textContent=`You scored ${score} out of ${questions.length}!`;$("#answers").innerHTML="";$("#feedback").textContent=score===questions.length?"Excellent work—you got every question right.":"Nice effort! Review the sections above and try again.";$("#nextBtn").textContent="Try again";$("#nextBtn").style.display="inline-flex";$("#score").textContent=`Final score: ${score} / ${questions.length}`;$("#nextBtn").onclick=()=>{qi=0;score=0;$("#nextBtn").onclick=null;renderQuestion();};}});
+ renderQuestion();
+})();
+</script>
+</body>
+</html>
